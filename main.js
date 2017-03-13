@@ -32,7 +32,6 @@ var entries = [1000,"JAN-16",100000,0,
 2010,"JUN-16",0,5200,
 5100,"JUN-16",19100,0,
 1000,"JUN-16",0,19100,
-4120,"JUN-16",5000,0,
 1000,"JUN-16",0,5000,
 7160,"JUL-16",2470,0,
 2010,"JUL-16",0,2470,
@@ -56,6 +55,7 @@ var accounts = [
 7140,"Rent",
 7160,"Telephone",
 9090,"Dividends"];
+
 var accountEntries = [];
 
 for (var i = 0; i < entries.length; i++) {
@@ -78,27 +78,25 @@ for (var i = 0; i < accountEntries.length; i++) {
           "accountNum": accounts[j],
           "job": accounts[j+1]
         }
-      } else {
-        accountEntries[i].job = {
-          "accountNum": accounts[j],
-          "job": accounts[j-1]
-        }
       }
     }
   }
 };
 
 data.addEventListener("click", function () {
-  if (startingA.value !== "" && endingA.value !== "" && firstDate.value !== "" && lastDate.value !== "" && type.value !== "") {
-
-  } else {
-    alert("everything isn't filled ");
-  }
-
-});
-
-for (var i = 0; i < accountEntries.length; i++) {
-  if (accountEntries[i].period.startsWith("MAR")) {
-    console.log(accountEntries[i].period);
+    for (var i = 0; i < monthOrder.length; i++) {
+      if (startingMonth.value.toUpperCase().startsWith(monthOrder[i])) {
+        var currentIndex = i;
+        for(var currentIndex; currentIndex < monthOrder.length; currentIndex++) {
+          for (var j = 0; j < accountEntries.length; j++) {
+            if (accountEntries[j].period.startsWith(monthOrder[currentIndex])) {
+              console.log(accountEntries[j]);
+            }
+          }
+          if (endingMonth.value.toUpperCase().startsWith(monthOrder[currentIndex])) {
+            return;
+          }
+        }
+      }
     }
-}
+});
