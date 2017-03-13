@@ -89,7 +89,7 @@ data.addEventListener("click", function () {
         var currentIndex = i;
         for(var currentIndex; currentIndex < monthOrder.length; currentIndex++) {
           for (var j = 0; j < accountEntries.length; j++) {
-            if (accountEntries[j].period.startsWith(monthOrder[currentIndex])) {
+            if (accountEntries[j].period.startsWith(monthOrder[currentIndex]) && accountEntries[j].account > parseInt(startingA.value) && accountEntries[j].account < parseInt(endingA.value)) {
               console.log(accountEntries[j]);
             }
           }
