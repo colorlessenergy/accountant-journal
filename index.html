@@ -5,19 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>accountant journal</title>
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <p>starting account number</p>
   <input id="starting" type="text">
   <p>ending account number</p>
   <input id="ending" type="text">
-  <p>starting month number</p>
+  <p>starting month</p>
   <input id="startingMonth" type="text">
-  <p>ending month number</p>
+  <p>ending month</p>
   <input id="endingMonth" type="text">
-  <p>output type</p>
-  <input id="type" type="text">
   <button id="data">send</button>
+  <h2>balance</h2>
+  <div class="account-display">
+    <div id="account">ACCOUNT</div>
+    <div id="description">DESCRIPTION</div>
+    <div id="debit">DEBIT</div>
+    <div id="credit">CREDIT</div>
+    <div id="balance">BALANCE</div>
+  </div>
   <script src="main.js"></script>
 </body>
 </html>

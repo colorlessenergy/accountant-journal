@@ -75,7 +75,6 @@ for (var i = 0; i < accountEntries.length; i++) {
     if (accountEntries[i].account === accounts[j]) {
       if (accounts[j+1] !== undefined) {
         accountEntries[i].job = {
-          "accountNum": accounts[j],
           "job": accounts[j+1]
         }
       }
@@ -90,6 +89,21 @@ data.addEventListener("click", function () {
         for(var currentIndex; currentIndex < monthOrder.length; currentIndex++) {
           for (var j = 0; j < accountEntries.length; j++) {
             if (accountEntries[j].period.startsWith(monthOrder[currentIndex]) && accountEntries[j].account > parseInt(startingA.value) && accountEntries[j].account < parseInt(endingA.value)) {
+              var p = document.createElement("p");
+              var p2 = document.createElement("p");
+              var p3 = document.createElement("p");
+              var p4 = document.createElement("p");
+              var p5 = document.createElement("p");
+              p.innerHTML = accountEntries[j].account;
+              document.getElementById("account").appendChild(p);
+              p2.innerHTML = accountEntries[j].job.job;
+              document.getElementById("description").appendChild(p2);
+              p3.innerHTML = accountEntries[j].debit;
+              document.getElementById("debit").appendChild(p3);
+              p4.innerHTML = accountEntries[j].credit;
+              document.getElementById("credit").appendChild(p4);
+              p5.innerHTML = (parseInt(accountEntries[j].debit) - parseInt(accountEntries[j].credit));
+              document.getElementById("balance").appendChild(p5);
               console.log(accountEntries[j]);
             }
           }
