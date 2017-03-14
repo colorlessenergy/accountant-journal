@@ -5,7 +5,9 @@ var lastDate = document.getElementById("endingMonth");
 var type = document.getElementById("type");
 var data = document.getElementById("data");
 var monthOrder = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEPT", "OCT", "NOV", "DEC"];
-
+var debt = 0;
+var credit = 0;
+var balanceTotal = 0;
 var entries = [1000,"JAN-16",100000,0,
 3000,"JAN-16",0,100000,
 7140,"JAN-16",36000,0,
@@ -88,6 +90,10 @@ data.addEventListener("click", function () {
         var currentIndex = i;
         for(var currentIndex; currentIndex < monthOrder.length; currentIndex++) {
           for (var j = 0; j < accountEntries.length; j++) {
+            var p6 = document.createElement("p");
+            var p7 = document.createElement("p");
+            var p8 = document.createElement("p");
+            var p9 = document.createElement("p");
             if (accountEntries[j].period.startsWith(monthOrder[currentIndex]) && accountEntries[j].account > parseInt(startingA.value) && accountEntries[j].account < parseInt(endingA.value)) {
               var p = document.createElement("p");
               var p2 = document.createElement("p");
@@ -104,10 +110,25 @@ data.addEventListener("click", function () {
               document.getElementById("credit").appendChild(p4);
               p5.innerHTML = (parseInt(accountEntries[j].debit) - parseInt(accountEntries[j].credit));
               document.getElementById("balance").appendChild(p5);
-              console.log(accountEntries[j]);
+              debt += parseInt(accountEntries[j].debit);
+              console.log("debt " + debt);
+              credit += parseInt(accountEntries[j].credit);
+              console.log("credit " + credit);
+              balanceTotal += (parseInt(accountEntries[j].debit) - parseInt(accountEntries[j].credit));
+              console.log("balance " + balanceTotal);
             }
+
           }
+
           if (endingMonth.value.toUpperCase().startsWith(monthOrder[currentIndex])) {
+            p6.innerHTML = debt;
+            p7.innerHTML = credit;
+            p8.innerHTML = balanceTotal;
+            p9.innerHTML = "total";
+            document.getElementById("account").appendChild(p9);
+            document.getElementById("debit").appendChild(p6);
+            document.getElementById("credit").appendChild(p7);
+            document.getElementById("balance").appendChild(p8);
             return;
           }
         }
